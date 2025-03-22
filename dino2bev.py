@@ -100,6 +100,10 @@ def calculate(
     return bev_cost_per_kwh
 
 
+def format_euro(number: float) -> str:
+    return f"{number:.2f}€"
+
+
 if __name__ == "__main__":
     args = argparser.parse_args()
     cost_per_kwh_diesel = calculate(
@@ -111,7 +115,7 @@ if __name__ == "__main__":
         thg_per_year=args.thg_quote,
         kwh_per_100km=args.kwh_per_100km,
     )
-    print(cost_per_kwh_diesel)
+    print(format_euro(cost_per_kwh_diesel))
     cost_per_kwh_gasoline = calculate(
         price_per_liter=args.gasoline_price,
         l_per_100km=args.gasoline_per_100km,
@@ -121,4 +125,4 @@ if __name__ == "__main__":
         thg_per_year=args.thg_quote,
         kwh_per_100km=args.kwh_per_100km,
     )
-    print(cost_per_kwh_gasoline)
+    print(format_euro(cost_per_kwh_gasoline))

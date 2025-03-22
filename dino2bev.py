@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 
-# Fair defaults, choosen for an VW ID3 vs VW Golf VII and a random gas station
+# Fair defaults, choosen for an VW ID3 vs VW Golf VIII and a random gas station
 # on a even more random date.
 DEFAULT_DIESEL_PRICE = 1.649
 DEFAULT_GASOLINE_PRICE = 1.759

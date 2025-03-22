@@ -5,7 +5,9 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 # on a even more random date.
 DEFAULT_DIESEL_PRICE = 1.649
 DEFAULT_GASOLINE_PRICE = 1.759
+# Reference: spritmonitor.de, VW ID3
 DEFAULT_BEV_KWH_PER_100KM = 18.78
+# Reference: spritmonitor.de, VW Golf, BJ >= 2020, PS >= 150
 DEFAULT_DIESEL_L_PER_100KM = 5.51
 DEFAULT_GASOLINE_L_PER_100KM = 7.39
 DEFAULT_DIESEL_TAX = 228

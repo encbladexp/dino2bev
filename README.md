@@ -3,6 +3,12 @@
 I often tend to have discussions about my BEV, and I often did some math about
 what would be a comparable kWh price for a given car and its consumption.
 
+# Features
+
+* Knows about what we tend to call THG Quote in Germany
+* Knows about Diesel and Gasoline, as well as different Taxes
+* Does not need any fancy libraries or packages except pure Python
+
 # Usage
 
 Let's just assume you only want to change our distance a little bit:
@@ -19,6 +25,10 @@ You are going to save money if you are able to get electricy cheaper ;)
 
 Just checkout `./dino2bev.py --help`, it has plenty of options. By default we
 compare an VW ID3 with an VW Golf VIII.
+
+# Requirements
+
+Python >= 3.12, most likely even older versions, will work well.
 
 # Project Information
 

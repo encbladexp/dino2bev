@@ -115,7 +115,12 @@ if __name__ == "__main__":
         thg_per_year=args.thg_quote,
         kwh_per_100km=args.kwh_per_100km,
     )
-    print(format_euro(cost_per_kwh_diesel))
+    print(
+        (
+            "The Diesel ICE compares to the BEV at a price of "
+            f"{format_euro(cost_per_kwh_diesel)} per kWh"
+        )
+    )
     cost_per_kwh_gasoline = calculate(
         price_per_liter=args.gasoline_price,
         l_per_100km=args.gasoline_per_100km,
@@ -125,4 +130,9 @@ if __name__ == "__main__":
         thg_per_year=args.thg_quote,
         kwh_per_100km=args.kwh_per_100km,
     )
-    print(format_euro(cost_per_kwh_gasoline))
+    print(
+        (
+            "The Gasoline ICE compares to the BEV at a price of "
+            f"{format_euro(cost_per_kwh_gasoline)} per kWh"
+        )
+    )

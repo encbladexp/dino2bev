@@ -71,7 +71,7 @@ argparser.add_argument(
 )
 
 
-def calculate(
+def calculate_bev_cost_per_kwh(
     price_per_liter: float,
     l_per_100km: float,
     distance_per_year: float,
@@ -102,13 +102,13 @@ def calculate(
     return bev_cost_per_kwh
 
 
-def format_euro(number: float) -> str:
+def format_float_as_euro(number: float) -> str:
     return f"{number:.2f}€"
 
 
 if __name__ == "__main__":
     args = argparser.parse_args()
-    cost_per_kwh_diesel = calculate(
+    cost_per_kwh_diesel = calculate_bev_cost_per_kwh(
         price_per_liter=args.diesel_price,
         l_per_100km=args.diesel_per_100km,
         distance_per_year=args.distance,
@@ -120,10 +120,10 @@ if __name__ == "__main__":
     print(
         (
             "The Diesel ICE compares to the BEV at a price of "
-            f"{format_euro(cost_per_kwh_diesel)} per kWh"
+            f"{format_float_as_euro(cost_per_kwh_diesel)} per kWh"
         )
     )
-    cost_per_kwh_gasoline = calculate(
+    cost_per_kwh_gasoline = calculate_bev_cost_per_kwh(
         price_per_liter=args.gasoline_price,
         l_per_100km=args.gasoline_per_100km,
         distance_per_year=args.distance,
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     print(
         (
             "The Gasoline ICE compares to the BEV at a price of "
-            f"{format_euro(cost_per_kwh_gasoline)} per kWh"
+            f"{format_float_as_euro(cost_per_kwh_gasoline)} per kWh"
         )
     )
     print("You are going to save money if you are able to get electricy cheaper ;)")

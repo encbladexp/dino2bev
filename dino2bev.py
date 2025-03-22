@@ -69,6 +69,19 @@ argparser.add_argument(
 argparser.add_argument(
     "--distance", type=float, default=DEFAULT_KM_PER_YEAR, help="Distance km/year"
 )
+car_selection_args_parser = argparser.add_argument_group("Car selection")
+car_selection_args_parser.add_argument(
+    "--no-gasoline",
+    dest="no_gasoline_car",
+    action="store_true",
+    help="Don't show a gasoline ICE car",
+)
+car_selection_args_parser.add_argument(
+    "--no-diesel",
+    dest="no_diesel_car",
+    action="store_true",
+    help="Don't show a diesel ICE car",
+)
 
 
 def calculate_bev_cost_per_kwh(
@@ -103,34 +116,36 @@ def format_float_as_euro(number: float) -> str:
 
 if __name__ == "__main__":
     args = argparser.parse_args()
-    cost_per_kwh_diesel = calculate_bev_cost_per_kwh(
-        price_per_liter=args.diesel_price,
-        l_per_100km=args.diesel_per_100km,
-        distance_per_year=args.distance,
-        ice_tax_per_year=args.diesel_tax,
-        bev_tax_per_year=args.bev_tax,
-        thg_per_year=args.thg_quote,
-        kwh_per_100km=args.kwh_per_100km,
-    )
-    print(
-        (
-            "The Diesel ICE compares to the BEV at a price of "
-            f"{format_float_as_euro(cost_per_kwh_diesel)} per kWh"
+    if not args.no_diesel_car:
+        cost_per_kwh_diesel = calculate_bev_cost_per_kwh(
+            price_per_liter=args.diesel_price,
+            l_per_100km=args.diesel_per_100km,
+            distance_per_year=args.distance,
+            ice_tax_per_year=args.diesel_tax,
+            bev_tax_per_year=args.bev_tax,
+            thg_per_year=args.thg_quote,
+            kwh_per_100km=args.kwh_per_100km,
         )
-    )
-    cost_per_kwh_gasoline = calculate_bev_cost_per_kwh(
-        price_per_liter=args.gasoline_price,
-        l_per_100km=args.gasoline_per_100km,
-        distance_per_year=args.distance,
-        ice_tax_per_year=args.gasoline_tax,
-        bev_tax_per_year=args.bev_tax,
-        thg_per_year=args.thg_quote,
-        kwh_per_100km=args.kwh_per_100km,
-    )
-    print(
-        (
-            "The Gasoline ICE compares to the BEV at a price of "
-            f"{format_float_as_euro(cost_per_kwh_gasoline)} per kWh"
+        print(
+            (
+                "The Diesel ICE compares to the BEV at a price of "
+                f"{format_float_as_euro(cost_per_kwh_diesel)} per kWh"
+            )
         )
-    )
+    if not args.no_gasoline_car:
+        cost_per_kwh_gasoline = calculate_bev_cost_per_kwh(
+            price_per_liter=args.gasoline_price,
+            l_per_100km=args.gasoline_per_100km,
+            distance_per_year=args.distance,
+            ice_tax_per_year=args.gasoline_tax,
+            bev_tax_per_year=args.bev_tax,
+            thg_per_year=args.thg_quote,
+            kwh_per_100km=args.kwh_per_100km,
+        )
+        print(
+            (
+                "The Gasoline ICE compares to the BEV at a price of "
+                f"{format_float_as_euro(cost_per_kwh_gasoline)} per kWh"
+            )
+        )
     print("You are going to save money if you are able to get electricy cheaper ;)")

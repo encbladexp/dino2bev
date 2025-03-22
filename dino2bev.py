@@ -86,20 +86,15 @@ def calculate_bev_cost_per_kwh(
     """
     # Distance per year is a total number, we need it per 100km
     distance_in_100km = distance_per_year / 100
-    # Let's start what costs our Diesel or Gasoline per year
-    ice_consumption_cost_per_year = price_per_liter * l_per_100km * distance_in_100km
-    # Now we add the taxes
-    ice_cost_per_year = ice_consumption_cost_per_year + ice_tax_per_year
-    # Now we add the THG quote, while it is an advantage for an BEV, we could
-    # simply add as disadvantage for an ICE. An alternate solution would be
-    # to break the THG quote down to our yearly distance, but the result will
-    # be the same.
-    ice_cost_per_year_with_thg = ice_cost_per_year + thg_per_year
-    # Now we need to worry about an (possible) tax of our BEV:
-    bev_cost_per_year = ice_cost_per_year_with_thg + bev_tax_per_year
-    bev_cost_per_100km = bev_cost_per_year / distance_in_100km
-    bev_cost_per_kwh = bev_cost_per_100km / kwh_per_100km
-    return bev_cost_per_kwh
+    # Let's start what costs our ICE per year
+    ice_variable_cost_per_100km = price_per_liter * l_per_100km
+    ice_fixed_cost_per_100km = ice_tax_per_year / distance_in_100km
+    ice_cost_per_100km = ice_variable_cost_per_100km + ice_fixed_cost_per_100km
+    # Now lets determine our fixed costs for the BEV, the TAX is an disadvantage,
+    # but the THG is an advantage.
+    bev_fixed_cost_per_100km = (bev_tax_per_year - thg_per_year) / distance_in_100km
+    bev_variable_cost_per_100km = ice_cost_per_100km - bev_fixed_cost_per_100km
+    return bev_variable_cost_per_100km / kwh_per_100km
 
 
 def format_float_as_euro(number: float) -> str:

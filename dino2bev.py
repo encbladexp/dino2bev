@@ -18,34 +18,49 @@ DEFAULT_KM_PER_YEAR = 12545
 
 argparser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 argparser.add_argument(
-    "--diesel-price", default=DEFAULT_DIESEL_PRICE, help="Diesel €/l"
+    "--diesel-price", type=float, default=DEFAULT_DIESEL_PRICE, help="Diesel €/l"
 )
 argparser.add_argument(
-    "--gasoline-price", default=DEFAULT_GASOLINE_PRICE, help="Gasoline €/l"
+    "--gasoline-price", type=float, default=DEFAULT_GASOLINE_PRICE, help="Gasoline €/l"
 )
 argparser.add_argument(
-    "--diesel-per-100km", default=DEFAULT_DIESEL_L_PER_100KM, help="Diesel l/100km"
+    "--diesel-per-100km",
+    type=float,
+    default=DEFAULT_DIESEL_L_PER_100KM,
+    help="Diesel l/100km",
 )
 argparser.add_argument(
     "--gasoline-per-100km",
+    type=float,
     default=DEFAULT_GASOLINE_L_PER_100KM,
     help="Gasoline l/100km",
 )
 argparser.add_argument(
-    "--kwh-per-100km", default=DEFAULT_BEV_KWH_PER_100KM, help="Electricity kWh/100km"
+    "--kwh-per-100km",
+    type=float,
+    default=DEFAULT_BEV_KWH_PER_100KM,
+    help="Electricity kWh/100km",
 )
 argparser.add_argument(
-    "--diesel-tax", default=DEFAULT_DIESEL_TAX, help="Diesel tax €/year"
+    "--diesel-tax", type=float, default=DEFAULT_DIESEL_TAX, help="Diesel tax €/year"
 )
 argparser.add_argument(
-    "--gasoline-tax", default=DEFAULT_GASOLINE_TAX, help="Gasoline tax €/year"
+    "--gasoline-tax",
+    type=float,
+    default=DEFAULT_GASOLINE_TAX,
+    help="Gasoline tax €/year",
 )
-argparser.add_argument("--bev-tax", default=DEFAULT_BEV_TAX, help="BEV tax €/year")
 argparser.add_argument(
-    "--thg-quote", default=DEFAULT_THG_QUOTE, help="THG quote / CO2 compensation €/year"
+    "--bev-tax", type=float, default=DEFAULT_BEV_TAX, help="BEV tax €/year"
 )
 argparser.add_argument(
-    "--distance", default=DEFAULT_KM_PER_YEAR, help="Distance km/year"
+    "--thg-quote",
+    type=float,
+    default=DEFAULT_THG_QUOTE,
+    help="THG quote / CO2 compensation €/year",
+)
+argparser.add_argument(
+    "--distance", type=float, default=DEFAULT_KM_PER_YEAR, help="Distance km/year"
 )
 
 

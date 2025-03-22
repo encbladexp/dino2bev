@@ -17,40 +17,45 @@ DEFAULT_THG_QUOTE = 90
 DEFAULT_KM_PER_YEAR = 12545
 
 argparser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-argparser.add_argument(
+ice_args_parser = argparser.add_argument_group("Gasoline/Diesel €/l")
+ice_args_parser.add_argument(
     "--diesel-price", type=float, default=DEFAULT_DIESEL_PRICE, help="Diesel €/l"
 )
-argparser.add_argument(
+ice_args_parser.add_argument(
     "--gasoline-price", type=float, default=DEFAULT_GASOLINE_PRICE, help="Gasoline €/l"
 )
-argparser.add_argument(
+consumption_args_parser = argparser.add_argument_group(
+    "Consumption l/100km or kWh/100km"
+)
+consumption_args_parser.add_argument(
     "--diesel-per-100km",
     type=float,
     default=DEFAULT_DIESEL_L_PER_100KM,
     help="Diesel l/100km",
 )
-argparser.add_argument(
+consumption_args_parser.add_argument(
     "--gasoline-per-100km",
     type=float,
     default=DEFAULT_GASOLINE_L_PER_100KM,
     help="Gasoline l/100km",
 )
-argparser.add_argument(
+consumption_args_parser.add_argument(
     "--kwh-per-100km",
     type=float,
     default=DEFAULT_BEV_KWH_PER_100KM,
     help="Electricity kWh/100km",
 )
-argparser.add_argument(
+tax_args_parser = argparser.add_argument_group("Taxes €/year")
+tax_args_parser.add_argument(
     "--diesel-tax", type=float, default=DEFAULT_DIESEL_TAX, help="Diesel tax €/year"
 )
-argparser.add_argument(
+tax_args_parser.add_argument(
     "--gasoline-tax",
     type=float,
     default=DEFAULT_GASOLINE_TAX,
     help="Gasoline tax €/year",
 )
-argparser.add_argument(
+tax_args_parser.add_argument(
     "--bev-tax", type=float, default=DEFAULT_BEV_TAX, help="BEV tax €/year"
 )
 argparser.add_argument(

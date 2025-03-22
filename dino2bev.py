@@ -138,3 +138,4 @@ if __name__ == "__main__":
             f"{format_euro(cost_per_kwh_gasoline)} per kWh"
         )
     )
+    print("You are going to save money if you are able to get electricy cheaper ;)")
